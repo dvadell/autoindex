@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  mod-perl:
+    build: .
+    volumes:
+      - /home/docker_qbittorrent/home/Downloads/:/shared:ro
+      - ./code:/code
+      - ./conf/apache2.conf:/etc/apache2/apache2.conf
+    expose:
+      - "80"
+    environment:
+      - VIRTUAL_HOST=files.of.ardor.link
+      - LETSENCRYPT_HOST=files.of.ardor.link
+      - LETSENCRYPT_EMAIL=dvadell@ardor.link
+networks:
+  default:
+    name: filesof-net
+

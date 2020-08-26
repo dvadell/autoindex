@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title> [% cwd.split('/').join(' > ') %] </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+ 
+  <style>
+  li {
+    list-style-type: none;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <h2>[% cwd.split('/').join(' > ') %] </h2>
+  <ul>
+    <li><a href="?[% parent_dir %]">Up</a></li>
+    [% FOREACH file = dir_list.keys.sort %]
+    <li><ion-icon name="[% dir_list.$file.icon %]"></ion-icon> 
+        <a href="?[% cwd %]/[% file %]">[% file %]</a>
+    </li>
+    [% END %]
+
+    [% FOREACH file = file_list.keys.sort %]
+    <li><ion-icon name="[% file_list.$file.icon %]"></ion-icon>
+        <a href="?[% cwd %]/[% file %]">[% file %]</a>
+    </li>
+    [% END %]
+  </ul>
+</div>
+
+<script>
+// https://stackoverflow.com/questions/9756837/prevent-html5-video-from-being-downloaded-right-click-saved#9756909
+$(document).ready(function(){
+   $('#videoElementID').bind('contextmenu',function() { return false; });
+});
+</script>
+</body>
+</html>
+
